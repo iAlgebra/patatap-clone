@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/iAlgebra/patatap-clone.git",
   "author": "Maria Gabriela Barrios Cantera <barrios.cantera@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "paper": "^0.11.5"
+  }
 }
