@@ -7,6 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="circles.css">
 	<!-- Define inlined PaperScript associate it with myCanvas -->
 	<script type="text/paperscript" canvas="myCanvas">
+		function onKeyDown() {
+			new Path.Circle(new Point(100, 100), 50).fillColor = "orange";
+		}
 	</script>
 </head>
 <body>
