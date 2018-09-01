@@ -27,6 +27,15 @@
 			var point = createRandomPoint();
 			new Path.Circle(point, 10).fillColor = "teal";
 		}
+
+		var animatedCircle = new Path.Circle(new Point(300, 300), 100);
+		animatedCircle.fillColor = "yellow";
+
+		function onFrame() {
+			// Each frame, change the fill color of the path slightly by
+			// adding 1 to its hue:
+			animatedCircle.fillColor.hue += 1;
+		}
 	</script>
 </head>
 <body>
