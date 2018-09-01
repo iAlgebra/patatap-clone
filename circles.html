@@ -7,8 +7,25 @@
 	<link rel="stylesheet" type="text/css" href="circles.css">
 	<!-- Define inlined PaperScript associate it with myCanvas -->
 	<script type="text/paperscript" canvas="myCanvas">
+		function createRandomPoint() {
+			//Creates a Point object using the max width(x coordinate) and the max height(y coordinate) of the canvas' viewport.
+			var maxPoint = new Point(view.size.width, view.size.height);
+			//Generates a Point object with random numbers between 0 and 1 (not inclusive) for its x and y coordinates.
+			var randomPoint = Point.random();
+			//Creates a Point Object with its x and y coordinates between 0 and max width and max height respectively.
+			var point = maxPoint * randomPoint;
+			//Covert the x coordinate to an integer
+			var x = Math.ceil(point.x);
+			//Covert the y coordinate to an integer
+			var y = Math.ceil(point.y);
+			point.x = x;
+			point.y = y;
+			return point;
+		}
+
 		function onKeyDown() {
-			new Path.Circle(new Point(100, 100), 50).fillColor = "orange";
+			var point = createRandomPoint();
+			new Path.Circle(point, 10).fillColor = "teal";
 		}
 	</script>
 </head>
