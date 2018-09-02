@@ -62,3 +62,6 @@ typings/
 
 # sound assets
 sounds/
+
+# Webstorm Settings
+.idea/
