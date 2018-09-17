@@ -30,7 +30,7 @@
 		// Creates a small circle at random points of the window each time a key is pressed
 		function onKeyDown() {
 			var point = createRandomPoint();
-			var newCircle = new Path.Circle(point, 10);
+			var newCircle = new Path.Circle(point, 500);
 			newCircle.fillColor = 'teal';
 			circles.push(newCircle);
 		}
@@ -44,6 +44,7 @@
 		  	// Looping through all the small circles and changing their fill color
 			for(var i = 0; i < circles.length; i++) {
 				circles[i].fillColor.hue += 1;
+				circles[i].scale(.9);
 			}
 			// Change the fill color of the circle slightly by adding 1 to its hue:
 			animatedCircle.fillColor.hue += 1;
