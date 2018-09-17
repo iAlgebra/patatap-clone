@@ -35,10 +35,6 @@
 			circles.push(newCircle);
 		}
 
-		// On page load, creates a big circle
-		var animatedCircle = new Path.Circle(new Point(300, 300), 100);
-		animatedCircle.fillColor = "yellow";
-
 		//Takes care of what happens in each frame of the animation
 		function onFrame() {
 		  	// Looping through all the small circles and changing their fill color
@@ -46,10 +42,6 @@
 				circles[i].fillColor.hue += 1;
 				circles[i].scale(.9);
 			}
-			// Change the fill color of the circle slightly by adding 1 to its hue:
-			animatedCircle.fillColor.hue += 1;
-			// Scale down the circle by 90% of what it was
-			// animatedCircle.scale(.9);
 		}
 	</script>
 </head>
