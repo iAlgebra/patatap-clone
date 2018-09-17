@@ -6,6 +6,7 @@
   "author": "Maria Gabriela Barrios Cantera <barrios.cantera@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "howler": "^2.0.15",
     "paper": "^0.11.5"
   }
 }
