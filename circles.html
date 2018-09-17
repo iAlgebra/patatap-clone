@@ -4,10 +4,17 @@
 	<title>Circles</title>
 	<!-- Load the Paper.js library -->
 	<script type="text/javascript" src="node_modules/paper/dist/paper-full.js"></script>
+	<!-- Load the Howler.js library -->
+	<script type="text/javascript" src="node_modules/howler/dist/howler.js"></script>
 	<link rel="stylesheet" type="text/css" href="circles.css">
 
 	<!-- Define inlined PaperScript associate it with myCanvas -->
 	<script type="text/paperscript" canvas="myCanvas">
+
+		//Creates a new sound
+		var sound = new Howl({
+			src: ['sounds/bubbles.mp3']
+		});
 
 		var circles = [];
 
@@ -29,6 +36,7 @@
 
 		// Creates a small circle at random points of the window each time a key is pressed
 		function onKeyDown() {
+			sound.play();
 			var point = createRandomPoint();
 			var newCircle = new Path.Circle(point, 500);
 			newCircle.fillColor = 'teal';
