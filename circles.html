@@ -5,36 +5,41 @@
 	<!-- Load the Paper.js library -->
 	<script type="text/javascript" src="node_modules/paper/dist/paper-full.js"></script>
 	<link rel="stylesheet" type="text/css" href="circles.css">
+
 	<!-- Define inlined PaperScript associate it with myCanvas -->
 	<script type="text/paperscript" canvas="myCanvas">
+
 		function createRandomPoint() {
-			//Creates a Point object using the max width(x coordinate) and the max height(y coordinate) of the canvas' viewport.
+			// Creates a Point object using the max width(x coordinate) and the max height(y coordinate) of the canvas' viewport.
 			var maxPoint = new Point(view.size.width, view.size.height);
-			//Generates a Point object with random numbers between 0 and 1 (not inclusive) for its x and y coordinates.
+			// Generates a Point object with random numbers between 0 and 1 (not inclusive) for its x and y coordinates.
 			var randomPoint = Point.random();
-			//Creates a Point Object with its x and y coordinates between 0 and max width and max height respectively.
+			// Creates a Point Object with its x and y coordinates between 0 and max width and max height respectively.
 			var point = maxPoint * randomPoint;
-			//Covert the x coordinate to an integer
+			// Covert the x coordinate to an integer
 			var x = Math.ceil(point.x);
-			//Covert the y coordinate to an integer
+			// Covert the y coordinate to an integer
 			var y = Math.ceil(point.y);
 			point.x = x;
 			point.y = y;
 			return point;
 		}
-
+		// Creates a small circle at random points of the window each time a key is pressed
 		function onKeyDown() {
 			var point = createRandomPoint();
 			new Path.Circle(point, 10).fillColor = "teal";
 		}
 
+		// On page load, creates a big circle
 		var animatedCircle = new Path.Circle(new Point(300, 300), 100);
 		animatedCircle.fillColor = "yellow";
 
+		// Makes the big circle animated changing its color
 		function onFrame() {
-			// Each frame, change the fill color of the path slightly by
-			// adding 1 to its hue:
+			// Each frame, change the fill color of the path slightly by adding 1 to its hue:
 			animatedCircle.fillColor.hue += 1;
+			// Each frame of the animation, scale down the circle by 90% of what it was
+			animatedCircle.scale(.9);
 		}
 	</script>
 </head>
