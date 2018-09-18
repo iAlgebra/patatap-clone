@@ -170,6 +170,7 @@
             }
         }
 
+        // Array that will contain every circle created on screen
         var circles = [];
 
         function createRandomPoint() {
@@ -189,24 +190,28 @@
         }
 
         function onKeyDown(e) {
-          //Only run the code if the key pressed is a letter from the keyData object
-          if (keyData[e.key]) {
-              var point = createRandomPoint();
-              // Creates a circle at random points of the window each time a key is pressed
-              var newCircle = new Path.Circle(point, 500);
-              //Giving every circle a color from the keyData object depending on which key was triggered
-              newCircle.fillColor = keyData[e.key].color;
-              keyData[e.key].sound.play();
-              circles.push(newCircle);
-          }
+            // Only run the code if the key pressed is a letter from the keyData object
+            if (keyData[e.key]) {
+                var point = createRandomPoint();
+                // Creates a circle at random points of the window each time a key is pressed
+                var newCircle = new Path.Circle(point, 500);
+                //Giving every circle a color from the keyData object depending on which key was triggered
+                newCircle.fillColor = keyData[e.key].color;
+                keyData[e.key].sound.play();
+                circles.push(newCircle);
+            }
         }
 
-        //Takes care of what happens in each frame of the animation
+        // Takes care of what happens in each frame of the animation
         function onFrame() {
             // Looping through all the circles and changing their fill color
             for (var i = 0; i < circles.length; i++) {
                 circles[i].fillColor.hue += 1;
                 circles[i].scale(.9);
+                if (circles[i].area < 1) {
+                    circles[i].remove(); // Remove the circle from the canvas
+                    circles.splice(i, 1); // Remove the circle from the array
+                }
             }
         }
     </script>
