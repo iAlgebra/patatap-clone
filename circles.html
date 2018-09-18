@@ -11,14 +11,26 @@
     <!-- Define inlined PaperScript associate it with myCanvas -->
     <script type="text/paperscript" canvas="myCanvas">
 
-        //Creates a new sound
-        var sound1 = new Howl({
-            src: ['sounds/bubbles.mp3']
-        });
-
-        var sound2 = new Howl({
-            src: ['sounds/clay.mp3']
-        });
+        var keyData = {
+            a: {
+                color: "purple",
+                sound: new Howl({
+                    src: ['sounds/bubbles.mp3']
+                })
+            },
+            s: {
+                color: "green",
+                sound: new Howl({
+                    src: ['sounds/clay.mp3']
+                })
+            },
+            d: {
+                color: "yellow",
+                sound: new Howl({
+                    src: ['sounds/confetti.mp3']
+                })
+            }
+        };
 
         var circles = [];
 
@@ -39,20 +51,17 @@
         }
 
         function onKeyDown(e) {
-            var point = createRandomPoint();
-            // Creates a circle at random points of the window each time a key is pressed
-            var newCircle = new Path.Circle(point, 500);
-            if (e.key === "a") {
-                sound1.play();
-                newCircle.fillColor = "purple";
-            }
-            else if (e.key === "s") {
-                sound2.play();
-                newCircle.fillColor = "#16a085";
-            } else {
-                newCircle.fillColor = "orange";
-            }
-            circles.push(newCircle);
+          //Only run the code if the key pressed is a letter from the keyData object
+          if (keyData[e.key]) {
+              var point = createRandomPoint();
+              // Creates a circle at random points of the window each time a key is pressed
+              var newCircle = new Path.Circle(point, 500);
+              //Giving every circle a color from the keyData object depending on which key was triggered
+              newCircle.fillColor = keyData[e.key].color;
+              var sound = keyData[e.key].sound;
+              sound.play();
+              circles.push(newCircle);
+          }
         }
 
         //Takes care of what happens in each frame of the animation
