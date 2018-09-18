@@ -29,9 +29,9 @@
             var randomPoint = Point.random();
             // Creates a Point Object with its x and y coordinates between 0 and max width and max height respectively.
             var point = maxPoint * randomPoint;
-            // Covert the x coordinate to an integer
+            // Transform the x coordinate to an integer
             var x = Math.ceil(point.x);
-            // Covert the y coordinate to an integer
+            // Transform the y coordinate to an integer
             var y = Math.ceil(point.y);
             point.x = x;
             point.y = y;
@@ -39,22 +39,25 @@
         }
 
         function onKeyDown(e) {
+            var point = createRandomPoint();
+            // Creates a circle at random points of the window each time a key is pressed
+            var newCircle = new Path.Circle(point, 500);
             if (e.key === "a") {
                 sound1.play();
+                newCircle.fillColor = "purple";
             }
-            if (e.key === "s") {
+            else if (e.key === "s") {
                 sound2.play();
+                newCircle.fillColor = "#16a085";
+            } else {
+                newCircle.fillColor = "orange";
             }
-            var point = createRandomPoint();
-            // Creates a small circle at random points of the window each time a key is pressed
-            var newCircle = new Path.Circle(point, 500);
-            newCircle.fillColor = 'teal';
             circles.push(newCircle);
         }
 
         //Takes care of what happens in each frame of the animation
         function onFrame() {
-            // Looping through all the small circles and changing their fill color
+            // Looping through all the circles and changing their fill color
             for (var i = 0; i < circles.length; i++) {
                 circles[i].fillColor.hue += 1;
                 circles[i].scale(.9);
